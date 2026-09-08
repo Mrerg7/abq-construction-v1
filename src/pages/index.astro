@@ -11,35 +11,32 @@ const STREAM_SRC =
   <Header />
 
   <main class="flex-1">
-    <section class="relative overflow-hidden bg-steel-950">
-      <div class="absolute inset-0">
-        <div class="relative h-full w-full" style="padding-top: 54.32098765432099%;">
-          <iframe
-            src={STREAM_SRC}
-            title="ABQ.Construction project footage"
-            loading="lazy"
-            class="absolute inset-0 h-full w-full border-0"
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/45 to-steel-950/20"></div>
-      </div>
-
-      <div class="relative container-narrow flex min-h-[28rem] items-end pb-12 pt-28 sm:min-h-[34rem] sm:pb-16 lg:min-h-[40rem]">
-        <div class="max-w-3xl">
-          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-rust-300">
-            Albuquerque · Build · Develop · Deliver
-          </p>
-          <h1 class="font-display text-5xl font-semibold uppercase tracking-wide text-white sm:text-6xl lg:text-7xl">
-            ABQ<span class="text-rust-400">.Construction</span>
-          </h1>
-          <p class="mt-5 max-w-xl text-base leading-relaxed text-steel-200 sm:text-lg">
-            A category-defining domain for builders working the Albuquerque metro — residential, commercial, and high-desert work that has to last.
-          </p>
-          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#capabilities" class="btn-primary">See Capabilities</a>
-            <a href="#acquisition" class="btn-secondary border-steel-500 bg-transparent text-white hover:bg-white/10">Domain Available</a>
+    <section class="relative bg-steel-950">
+      <div class="relative w-full" style="padding-top: 54.32098765432099%;">
+        <iframe
+          src={STREAM_SRC}
+          title="ABQ.Construction project footage"
+          loading="lazy"
+          style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowfullscreen="true"
+        ></iframe>
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/50 to-steel-950/15"></div>
+        <div class="absolute inset-0 flex items-end">
+          <div class="container-narrow w-full pb-10 pt-24 sm:pb-14">
+            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-rust-300">
+              Albuquerque · Build · Develop · Deliver
+            </p>
+            <h1 class="font-display text-5xl font-semibold uppercase tracking-wide text-white sm:text-6xl lg:text-7xl">
+              ABQ<span class="text-rust-400">.Construction</span>
+            </h1>
+            <p class="mt-5 max-w-xl text-base leading-relaxed text-steel-200 sm:text-lg">
+              A category-defining domain for builders working the Albuquerque metro — residential, commercial, and high-desert work that has to last.
+            </p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#capabilities" class="btn-primary pointer-events-auto">See Capabilities</a>
+              <a href="#acquisition" class="btn-secondary pointer-events-auto border-steel-500 bg-transparent text-white hover:bg-white/10">Domain Available</a>
+            </div>
           </div>
         </div>
       </div>
