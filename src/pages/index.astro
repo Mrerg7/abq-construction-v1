@@ -3,8 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+const STREAM_ID = '3a86d81e27e77958499dbb2856e6273c';
+const STREAM_CUSTOMER = 'customer-wa9cpywo3l4jte5c';
+const STREAM_POSTER = `https://${STREAM_CUSTOMER}.cloudflarestream.com/${STREAM_ID}/thumbnails/thumbnail.jpg?time=&height=600`;
 const STREAM_SRC =
-  'https://customer-wa9cpywo3l4jte5c.cloudflarestream.com/3a86d81e27e77958499dbb2856e6273c/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-wa9cpywo3l4jte5c.cloudflarestream.com%2F3a86d81e27e77958499dbb2856e6273c%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false';
+  `https://${STREAM_CUSTOMER}.cloudflarestream.com/${STREAM_ID}/iframe?muted=true&loop=true&autoplay=true&poster=${encodeURIComponent(STREAM_POSTER)}&controls=false`;
+// Width / height of the Stream source (matches the official embed padding-top %).
+const STREAM_ASPECT = 1.841;
 ---
 
 <Layout>
@@ -12,18 +17,26 @@ const STREAM_SRC =
 
   <main class="flex-1">
     <section class="relative isolate overflow-hidden bg-steel-950">
-      <div class="relative min-h-[78svh] w-full sm:min-h-0 sm:[padding-top:54.32098765432099%]">
-        <iframe
-          src={STREAM_SRC}
-          title="ABQ.Construction project footage"
-          loading="eager"
-          class="absolute inset-0 h-full w-full border-0 max-sm:scale-[1.65] max-sm:origin-center"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-          allowfullscreen="true"
-        ></iframe>
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/40 to-transparent max-sm:via-steel-950/25"></div>
+      <div class="relative min-h-[85svh] w-full sm:min-h-0 sm:[padding-top:54.32098765432099%]">
+        <div class="stream-frame absolute inset-0 overflow-hidden">
+          <img
+            src={STREAM_POSTER}
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+          <iframe
+            src={STREAM_SRC}
+            title="ABQ.Construction project footage"
+            loading="eager"
+            class="stream-iframe pointer-events-none absolute border-0"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowfullscreen="true"
+          ></iframe>
+        </div>
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/45 to-transparent max-sm:from-steel-950/95 max-sm:via-steel-950/20"></div>
         <div class="absolute inset-0 flex items-end">
-          <div class="container-narrow w-full pb-8 pt-8 sm:pb-14 sm:pt-24">
+          <div class="container-narrow w-full pb-8 pt-6 sm:pb-14 sm:pt-24">
             <p class="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-rust-300 sm:mb-4 sm:text-xs">
               Albuquerque · Build · Develop · Deliver
             </p>
@@ -41,6 +54,34 @@ const STREAM_SRC =
         </div>
       </div>
     </section>
+
+    <style define:vars={{ streamAspect: STREAM_ASPECT }}>
+      .stream-frame {
+        container-type: size;
+      }
+
+      /* Mobile: cover-crop the landscape Stream iframe inside the tall hero. */
+      .stream-iframe {
+        left: 50%;
+        top: 50%;
+        width: max(100cqw, calc(100cqh * var(--streamAspect)));
+        height: max(100cqh, calc(100cqw / var(--streamAspect)));
+        max-width: none;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Desktop: fill the native Stream aspect box (no crop needed). */
+      @media (min-width: 640px) {
+        .stream-iframe {
+          inset: 0;
+          left: auto;
+          top: auto;
+          width: 100%;
+          height: 100%;
+          transform: none;
+        }
+      }
+    </style>
 
     <section id="capabilities" class="section-padding bg-white">
       <div class="container-narrow">
