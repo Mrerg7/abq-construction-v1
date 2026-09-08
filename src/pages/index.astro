@@ -11,29 +11,29 @@ const STREAM_SRC =
   <Header />
 
   <main class="flex-1">
-    <section class="relative bg-steel-950">
-      <div class="relative w-full" style="padding-top: 54.32098765432099%;">
+    <section class="relative isolate overflow-hidden bg-steel-950">
+      <div class="relative min-h-[78svh] w-full sm:min-h-0 sm:[padding-top:54.32098765432099%]">
         <iframe
           src={STREAM_SRC}
           title="ABQ.Construction project footage"
-          loading="lazy"
-          style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+          loading="eager"
+          class="absolute inset-0 h-full w-full border-0 max-sm:scale-[1.65] max-sm:origin-center"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
           allowfullscreen="true"
         ></iframe>
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/50 to-steel-950/15"></div>
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/40 to-transparent max-sm:via-steel-950/25"></div>
         <div class="absolute inset-0 flex items-end">
-          <div class="container-narrow w-full pb-10 pt-24 sm:pb-14">
-            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-rust-300">
+          <div class="container-narrow w-full pb-8 pt-8 sm:pb-14 sm:pt-24">
+            <p class="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-rust-300 sm:mb-4 sm:text-xs">
               Albuquerque · Build · Develop · Deliver
             </p>
-            <h1 class="font-display text-5xl font-semibold uppercase tracking-wide text-white sm:text-6xl lg:text-7xl">
+            <h1 class="font-display text-4xl font-semibold uppercase tracking-wide text-white sm:text-6xl lg:text-7xl">
               ABQ<span class="text-rust-400">.Construction</span>
             </h1>
-            <p class="mt-5 max-w-xl text-base leading-relaxed text-steel-200 sm:text-lg">
+            <p class="mt-4 max-w-xl text-sm leading-relaxed text-steel-200 sm:mt-5 sm:text-lg">
               A category-defining domain for builders working the Albuquerque metro — residential, commercial, and high-desert work that has to last.
             </p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div class="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
               <a href="#capabilities" class="btn-primary pointer-events-auto">See Capabilities</a>
               <a href="#acquisition" class="btn-secondary pointer-events-auto border-steel-500 bg-transparent text-white hover:bg-white/10">Domain Available</a>
             </div>
