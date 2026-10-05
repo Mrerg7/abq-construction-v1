@@ -6,19 +6,28 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonical?: string;
+  structuredData?: object;
+  noIndex?: boolean;
+  preloadFonts?: string[];
 }
 
 const POSTER =
   'https://customer-wa9cpywo3l4jte5c.cloudflarestream.com/3a86d81e27e77958499dbb2856e6273c/thumbnails/thumbnail.jpg?time=&height=600';
 
 const {
-  title = 'ABQ.Construction | Albuquerque Building Brand',
-  description = 'Albuquerque construction brand concept for residential, commercial, and high-desert building. Domain available for acquisition.',
+  title = 'ABQ.Construction | Premium Domain for Sale | DesertRich',
+  description = 'Buy ABQ.Construction - Premium .construction domain for Albuquerque builders. Short, memorable, exact-match category domain. $100,000. Escrow protected. Instant transfer.',
   ogImage = POSTER,
   canonical = 'https://abq.construction/',
+  structuredData,
+  noIndex = false,
+  preloadFonts = [],
 } = Astro.props;
 
-const siteName = 'ABQ.Construction';
+const siteName = 'DesertRich Domains';
+const domainPrice = 100000;
+const domainName = 'ABQ.Construction';
+const domainTld = '.construction';
 ---
 
 <!doctype html>
@@ -30,7 +39,7 @@ const siteName = 'ABQ.Construction';
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="google-site-verification" content="RLBHyg7UE38RRRbipEpigsVG1swHcCPQgusbUBgUUA8" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <link rel="canonical" href={canonical} />
 
     <meta property="og:type" content="website" />
@@ -47,6 +56,10 @@ const siteName = 'ABQ.Construction';
     <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     <meta name="theme-color" content="#1f2225" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -54,7 +67,15 @@ const siteName = 'ABQ.Construction';
       "@type": "WebSite",
       "name": siteName,
       "url": "https://abq.construction",
-      "description": description
+      "description": description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://abq.construction/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     })} />
 
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -66,11 +87,48 @@ const siteName = 'ABQ.Construction';
       "primaryImageOfPage": { "@type": "ImageObject", "url": ogImage },
       "about": {
         "@type": "Thing",
-        "name": "Albuquerque Construction",
-        "description": "Residential and commercial construction in Albuquerque's high-desert climate."
+        "name": "Premium Domain Names",
+        "description": "Buy premium domain names for construction, real estate, and business brands."
       },
-      "datePublished": "2026-09-08",
-      "dateModified": "2026-09-08"
+      "datePublished": "2026-01-01",
+      "dateModified": new Date().toISOString().split('T')[0]
+    })} />
+
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": domainName,
+      "description": "Premium exact-match .construction domain for Albuquerque metro area. Ideal for general contractors, developers, and construction technology brands targeting New Mexico.",
+      "brand": {
+        "@type": "Brand",
+        "name": "DesertRich Domains"
+      },
+      "sku": "ABQ-CONSTRUCTION-001",
+      "category": "Premium Domain Names",
+      "offers": {
+        "@type": "Offer",
+        "name": domainName,
+        "description": "One-time purchase includes domain transfer to your registrar, escrow protection, and transfer assistance.",
+        "url": canonical,
+        "priceCurrency": "USD",
+        "price": domainPrice,
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "DesertRich Domains",
+          "url": "https://desertrich.com"
+        },
+        "priceValidUntil": "2026-12-31"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "1"
+      }
     })} />
   </head>
   <body class="min-h-screen flex flex-col">

@@ -8,27 +8,61 @@ const STREAM_CUSTOMER = 'customer-wa9cpywo3l4jte5c';
 const STREAM_POSTER = `https://${STREAM_CUSTOMER}.cloudflarestream.com/${STREAM_ID}/thumbnails/thumbnail.jpg?time=&height=600`;
 const STREAM_SRC =
   `https://${STREAM_CUSTOMER}.cloudflarestream.com/${STREAM_ID}/iframe?muted=true&loop=true&autoplay=true&poster=${encodeURIComponent(STREAM_POSTER)}&controls=false`;
-// Width / height of the Stream source (matches the official embed padding-top %).
 const STREAM_ASPECT = 1.841;
+
+const PRICE = 100000;
+const DOMAIN = 'ABQ.Construction';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: DOMAIN,
+  description: 'Premium exact-match .construction domain for Albuquerque metro area. Ideal for general contractors, developers, and construction technology brands targeting New Mexico.',
+  brand: { '@type': 'Brand', name: 'DesertRich Domains' },
+  sku: 'ABQ-CONSTRUCTION-001',
+  category: 'Premium Domain Names',
+  offers: {
+    '@type': 'Offer',
+    name: DOMAIN,
+    description: 'One-time purchase includes domain transfer to your registrar, escrow protection, and transfer assistance.',
+    url: 'https://abq.construction/',
+    priceCurrency: 'USD',
+    price: PRICE,
+    availability: 'https://schema.org/InStock',
+    seller: {
+      '@type': 'Organization',
+      name: 'DesertRich Domains',
+      url: 'https://desertrich.com'
+    },
+    priceValidUntil: '2026-12-31'
+  }
+};
 ---
 
-<Layout>
+<Layout
+  title="ABQ.Construction | Premium Domain for Sale | DesertRich"
+  description="Buy ABQ.Construction — premium .construction domain for Albuquerque builders. Short, memorable, exact-match. $100,000. Escrow protected. Instant transfer."
+  structuredData={structuredData}
+>
   <Header />
 
   <main class="flex-1">
+    <!-- HERO: Above-the-fold conversion zone -->
     <section class="relative isolate overflow-hidden bg-steel-950">
-      <div class="relative min-h-[85svh] w-full sm:min-h-0 sm:[padding-top:54.32098765432099%]">
+      <div class="relative min-h-[70svh] w-full sm:min-h-0 sm:[padding-top:40%]">
         <div class="stream-frame absolute inset-0 overflow-hidden">
           <img
             src={STREAM_POSTER}
-            alt=""
-            aria-hidden="true"
+            alt="Albuquerque construction project footage"
+            width="1280"
+            height="600"
+            fetchpriority="high"
             class="absolute inset-0 h-full w-full object-cover"
           />
           <iframe
             src={STREAM_SRC}
             title="ABQ.Construction project footage"
-            loading="eager"
+            loading="lazy"
             class="stream-iframe pointer-events-none absolute border-0"
             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
             allowfullscreen="true"
@@ -38,55 +72,88 @@ const STREAM_ASPECT = 1.841;
         <div class="absolute inset-0 flex items-end">
           <div class="container-narrow w-full pb-8 pt-6 sm:pb-14 sm:pt-24">
             <p class="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-rust-300 sm:mb-4 sm:text-xs">
-              Albuquerque · Build · Develop · Deliver
+              Albuquerque · Premium Domain · For Sale
             </p>
             <h1 class="font-display text-4xl font-semibold uppercase tracking-wide text-white sm:text-6xl lg:text-7xl">
-              ABQ<span class="text-rust-400">.Construction</span>
+              {DOMAIN.split('.')[0]}<span class="text-rust-400">.{DOMAIN.split('.')[1]}</span>
             </h1>
             <p class="mt-4 max-w-xl text-sm leading-relaxed text-steel-200 sm:mt-5 sm:text-lg">
-              A category-defining domain for builders working the Albuquerque metro — residential, commercial, and high-desert work that has to last.
+              Category-defining domain for builders working the Albuquerque metro — residential, commercial, and high-desert work that has to last.
             </p>
             <div class="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
-              <a href="#capabilities" class="btn-primary pointer-events-auto">See Capabilities</a>
-              <a href="#acquisition" class="btn-secondary pointer-events-auto border-steel-500 bg-transparent text-white hover:bg-white/10">Domain Available</a>
+              <a href="mailto:sales@desertrich.com?subject=Buy%20ABQ.Construction&body=I%20want%20to%20purchase%20ABQ.Construction%20for%20$100%2C000." class="btn-primary pointer-events-auto">Buy Now — ${(PRICE).toLocaleString()}</a>
+              <a href="#acquisition" class="btn-secondary pointer-events-auto border-steel-500 bg-transparent text-white hover:bg-white/10">Make Offer</a>
             </div>
+            <div class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-steel-300 sm:text-sm">
+              <span class="inline-flex items-center gap-1.5">
+                <svg class="h-4 w-4 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                Escrow protected
+              </span>
+              <span class="inline-flex items-center gap-1.5">
+                <svg class="h-4 w-4 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                Instant transfer
+              </span>
+              <span class="inline-flex items-center gap-1.5">
+                <svg class="h-4 w-4 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                SSL secure
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style define:vars={{ streamAspect: STREAM_ASPECT }}>
+        .stream-frame { container-type: size; }
+        .stream-iframe {
+          left: 50%;
+          top: 50%;
+          width: max(100cqw, calc(100cqh * var(--streamAspect)));
+          height: max(100cqh, calc(100cqw / var(--streamAspect)));
+          max-width: none;
+          transform: translate(-50%, -50%);
+        }
+        @media (min-width: 640px) {
+          .stream-iframe {
+            inset: 0;
+            left: auto;
+            top: auto;
+            width: 100%;
+            height: 100%;
+            transform: none;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="border-b border-steel-200 bg-white py-6">
+      <div class="container-narrow">
+        <div class="grid grid-cols-2 gap-4 text-center md:grid-cols-4">
+          <div class="rounded-lg bg-steel-50 p-4">
+            <p class="font-display text-2xl font-semibold uppercase text-rust-700">$100K</p>
+            <p class="text-xs text-steel-600">Fixed price · Firm</p>
+          </div>
+          <div class="rounded-lg bg-steel-50 p-4">
+            <p class="font-display text-2xl font-semibold uppercase text-rust-700">14 chars</p>
+            <p class="text-xs text-steel-600">Short · Exact match</p>
+          </div>
+          <div class="rounded-lg bg-steel-50 p-4">
+            <p class="font-display text-2xl font-semibold uppercase text-rust-700">.construction</p>
+            <p class="text-xs text-steel-600">Category TLD</p>
+          </div>
+          <div class="rounded-lg bg-steel-50 p-4">
+            <p class="font-display text-2xl font-semibold uppercase text-rust-700">1 owner</p>
+            <p class="text-xs text-steel-600">Clean history</p>
           </div>
         </div>
       </div>
     </section>
 
-    <style define:vars={{ streamAspect: STREAM_ASPECT }}>
-      .stream-frame {
-        container-type: size;
-      }
-
-      /* Mobile: cover-crop the landscape Stream iframe inside the tall hero. */
-      .stream-iframe {
-        left: 50%;
-        top: 50%;
-        width: max(100cqw, calc(100cqh * var(--streamAspect)));
-        height: max(100cqh, calc(100cqw / var(--streamAspect)));
-        max-width: none;
-        transform: translate(-50%, -50%);
-      }
-
-      /* Desktop: fill the native Stream aspect box (no crop needed). */
-      @media (min-width: 640px) {
-        .stream-iframe {
-          inset: 0;
-          left: auto;
-          top: auto;
-          width: 100%;
-          height: 100%;
-          transform: none;
-        }
-      }
-    </style>
-
+    <!-- CAPABILITIES / USE CASES -->
     <section id="capabilities" class="section-padding bg-white">
       <div class="container-narrow">
         <div class="max-w-2xl">
-          <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950">Capabilities</h2>
+          <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950">Who this domain works for</h2>
           <p class="mt-4 text-lg text-steel-600">
             A construction brand in Albuquerque has to cover more than a jobsite. It has to signal reliability in a market defined by climate, codes, and schedule pressure.
           </p>
@@ -94,50 +161,51 @@ const STREAM_ASPECT = 1.841;
 
         <div class="mt-12 grid gap-6 md:grid-cols-3">
           <article class="card">
-            <h3 class="font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Residential</h3>
+            <h3 class="font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">General Contractor</h3>
             <p class="mt-3 text-sm leading-relaxed text-steel-600">
               Custom homes, additions, and remodels that handle large daily temperature swings, low humidity, and intense sun.
             </p>
           </article>
           <article class="card">
-            <h3 class="font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Commercial</h3>
+            <h3 class="font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Developer</h3>
             <p class="mt-3 text-sm leading-relaxed text-steel-600">
               Tenant improvements, ground-up builds, and light industrial work across the Albuquerque and Rio Rancho corridor.
             </p>
           </article>
           <article class="card">
-            <h3 class="font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Site & Shell</h3>
+            <h3 class="font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Construction Tech</h3>
             <p class="mt-3 text-sm leading-relaxed text-steel-600">
-              Grading, drainage, and envelope work that account for monsoon storms and high-desert soils.
+              SaaS, scheduling, and marketplace brands that need an exact-match category domain with local authority.
             </p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- CLIMATE / MARKET FIT -->
     <section id="climate" class="section-padding bg-steel-50">
       <div class="container-narrow grid items-start gap-12 lg:grid-cols-2">
         <div>
-          <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950">High-desert building</h2>
+          <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950">Why ABQ.Construction</h2>
           <p class="mt-4 text-lg text-steel-600">
             Albuquerque is not a generic Sun Belt market. Elevation, UV, and monsoon weather change how materials perform and how schedules get planned.
           </p>
           <ul class="mt-8 space-y-4 text-steel-700">
             <li class="flex gap-3">
               <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-rust-500"></span>
-              <span><strong class="text-steel-950">UV and thermal swing</strong> — finishes and roofing have to tolerate heat by day and cool nights.</span>
+              <span><strong class="text-steel-950">Exact-match category</strong> — the word every client already searches, paired with the city code.</span>
             </li>
             <li class="flex gap-3">
               <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-rust-500"></span>
-              <span><strong class="text-steel-950">Low humidity</strong> — wood movement, concrete cure, and interior comfort all behave differently here.</span>
+              <span><strong class="text-steel-950">Short & brandable</strong> — works on a truck door, a bid cover, and a search result without explanation.</span>
             </li>
             <li class="flex gap-3">
               <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-rust-500"></span>
-              <span><strong class="text-steel-950">Monsoon drainage</strong> — short, intense storms punish weak site work.</span>
+              <span><strong class="text-steel-950">Category TLD</strong> — .construction signals trade credibility to search engines and users.</span>
             </li>
             <li class="flex gap-3">
               <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-rust-500"></span>
-              <span><strong class="text-steel-950">Local codes & inspections</strong> — City of Albuquerque and surrounding jurisdictions reward teams that already know the process.</span>
+              <span><strong class="text-steel-950">Local SEO anchor</strong> — reinforces Albuquerque visibility for "construction near me" intent.</span>
             </li>
           </ul>
         </div>
@@ -165,22 +233,121 @@ const STREAM_ASPECT = 1.841;
       </div>
     </section>
 
-    <section id="brand" class="section-padding bg-white">
+    <!-- SOCIAL PROOF -->
+    <section class="section-padding bg-white">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950">Why this domain</h2>
-        <div class="mt-6 space-y-4 text-steel-700 leading-relaxed">
-          <p>
-            <strong class="text-steel-950">ABQ.Construction</strong> is the shortest possible pairing of city and category.
-            It works on a truck door, a bid cover, and a search result without explanation.
-          </p>
-          <p>
-            The name is available for a general contractor, developer, specialty trade group, or construction-tech brand targeting New Mexico.
-          </p>
+        <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950 text-center">Domain sales context</h2>
+        <div class="mt-10 space-y-6">
+          <figure class="card">
+            <blockquote class="text-lg italic text-steel-700">
+              "Exact-match city + trade domains are the hardest to replace once they are gone."
+            </blockquote>
+            <figcaption class="mt-3 text-sm text-steel-500">— Domain industry convention, premium city-category pairs</figcaption>
+          </figure>
+          <figure class="card">
+            <blockquote class="text-lg italic text-steel-700">
+              "Short .trade and .construction names consistently outperform generic TLDs for local service brands."
+            </blockquote>
+            <figcaption class="mt-3 text-sm text-steel-500">— New gTLD market trend</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="border-t border-steel-200 bg-steel-50 py-12">
+    <!-- ACQUISITION / CONVERSION -->
+    <section id="acquisition" class="section-padding bg-steel-950 text-steel-100">
+      <div class="container-narrow max-w-3xl text-center">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-rust-500/30 bg-rust-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-rust-300">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-rust-400 opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-rust-400"></span>
+          </span>
+          Available now · One at a time
+        </div>
+        <h2 class="font-display text-4xl font-semibold tracking-wide text-white sm:text-5xl">
+          Acquire <span class="text-rust-400">{DOMAIN}</span>
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-steel-300 sm:text-lg">
+          Short, category-exact domain for an Albuquerque builder, GC, or development brand. Local city code + the word every client already searches.
+        </p>
+
+        <div class="mt-8 rounded-xl border border-steel-700 bg-steel-900 p-6 text-left">
+          <div class="flex items-baseline justify-between border-b border-steel-700 pb-4">
+            <span class="text-sm text-steel-400">Asking price</span>
+            <span class="font-display text-4xl font-semibold uppercase text-rust-400">${(PRICE).toLocaleString()}</span>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-steel-300">
+            <li class="flex items-start gap-2">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Escrow via Escrow.com or Dan.com protected transaction
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Instant transfer to your registrar of choice
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Clean title · No liens · Transfer assistance included
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-rust-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Confidential discussions · Response within 1–2 business days
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="mailto:sales@desertrich.com?subject=Buy%20ABQ.Construction&body=I%20want%20to%20purchase%20ABQ.Construction%20for%20$100%2C000.%0A%0AName%3A%0ACompany%3A%0APhone%3A%0AEmail%3A"
+            class="inline-flex min-h-[48px] items-center gap-2 rounded-md bg-rust-500 px-8 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:bg-rust-400"
+          >
+            Buy Now — ${(PRICE).toLocaleString()}
+          </a>
+          <a
+            href="mailto:sales@desertrich.com?subject=Offer%20on%20ABQ.Construction"
+            class="inline-flex min-h-[48px] items-center gap-2 rounded-md border border-steel-500 bg-transparent px-8 py-3.5 text-sm font-semibold uppercase tracking-wide text-steel-100 hover:bg-white/10"
+          >
+            Make Offer
+          </a>
+          <a
+            href="tel:+15055550123"
+            class="inline-flex min-h-[48px] items-center gap-2 rounded-md border border-steel-500 bg-transparent px-8 py-3.5 text-sm font-semibold uppercase tracking-wide text-steel-100 hover:bg-white/10"
+          >
+            Contact Agent
+          </a>
+        </div>
+        <p class="mt-6 text-xs text-steel-500">Serious inquiries only. Escrow protected. Transfer guaranteed.</p>
+      </div>
+    </section>
+
+    <!-- INSIGHTS / CONTENT HUB -->
+    <section class="section-padding bg-steel-50">
+      <div class="container-narrow">
+        <h2 class="font-display text-4xl font-semibold uppercase tracking-wide text-steel-950">Domain insights</h2>
+        <p class="mt-4 text-lg text-steel-600">
+          Guides on premium domain valuation, New Mexico market trends, and brand strategy.
+        </p>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <a href="/insights/albuquerque-construction" class="card block transition hover:shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wider text-rust-600">Market Guide</p>
+            <h3 class="mt-2 font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Albuquerque Construction</h3>
+            <p class="mt-3 text-sm leading-relaxed text-steel-600">Why city-category domains anchor local search authority in the high desert.</p>
+          </a>
+          <a href="/insights/albuquerque-construction" class="card block transition hover:shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wider text-rust-600">Valuation</p>
+            <h3 class="mt-2 font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Premium Domain Value</h3>
+            <p class="mt-3 text-sm leading-relaxed text-steel-600">How exact-match and short-length premiums are priced in 2026.</p>
+          </a>
+          <a href="/insights/albuquerque-construction" class="card block transition hover:shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wider text-rust-600">Strategy</p>
+            <h3 class="mt-2 font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">Brand Fit</h3>
+            <p class="mt-3 text-sm leading-relaxed text-steel-600">Choosing between .com and category TLDs for trade and construction brands.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-steel-200 bg-white py-12">
       <div class="container-narrow text-center">
         <p class="mx-auto max-w-2xl text-sm text-steel-500">
           Information presented is for demonstration and educational purposes only and does not constitute an offer of construction services.
@@ -189,5 +356,48 @@ const STREAM_ASPECT = 1.841;
     </section>
   </main>
 
+  <!-- EXIT-INTENT EMAIL CAPTURE -->
+  <div id="exit-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-steel-950/70 p-4" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+    <div class="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl">
+      <h2 id="exit-title" class="font-display text-3xl font-semibold uppercase tracking-wide text-steel-950">Wait — before you go</h2>
+      <p class="mt-3 text-sm leading-relaxed text-steel-600">
+        Get notified when <strong class="text-steel-950">{DOMAIN}</strong> is under offer or if the price changes. No spam, one email.
+      </p>
+      <form id="exit-form" class="mt-6 space-y-3">
+        <label for="exit-email" class="sr-only">Email address</label>
+        <input id="exit-email" type="email" required placeholder="you@company.com" class="w-full rounded-md border border-steel-300 px-4 py-3 text-sm focus:border-rust-500 focus:outline-none focus:ring-1 focus:ring-rust-500" />
+        <button type="submit" class="btn-primary w-full">Notify Me</button>
+        <button type="button" id="exit-close" class="w-full text-center text-sm text-steel-500 hover:text-steel-700">No thanks</button>
+      </form>
+    </div>
+  </div>
+
   <Footer />
+
+  <script>
+    // Exit-intent popup
+    const modal = document.getElementById('exit-modal');
+    const closeBtn = document.getElementById('exit-close');
+    const form = document.getElementById('exit-form');
+    const hasSeen = sessionStorage.getItem('exitSeen');
+
+    function showModal() {
+      if (!modal || hasSeen) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      sessionStorage.setItem('exitSeen', '1');
+    }
+    function hideModal() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.addEventListener('mouseout', (e) => {
+      if (!e.relatedTarget && e.clientY <= 0) showModal();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', hideModal);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+    if (form) form.addEventListener('submit', (e) => { e.preventDefault(); hideModal(); });
+  </script>
 </Layout>

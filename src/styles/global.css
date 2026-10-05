@@ -12,6 +12,7 @@
 
   body {
     @apply bg-steel-50 text-steel-900 font-sans antialiased;
+    font-size: 16px;
   }
 
   ::selection {
@@ -30,10 +31,12 @@
 
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-md bg-rust-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-sm transition hover:bg-rust-500;
+    min-height: 48px;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-md border border-steel-300 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-steel-800 transition hover:bg-steel-50;
+    min-height: 48px;
   }
 
   .card {
