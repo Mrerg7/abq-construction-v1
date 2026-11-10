@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const insights = (await getCollection('insights', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const canonical = 'https://abq.construction/insights/';
+---
+
+<Layout
+  title="Domain Insights | ABQ.Construction"
+  description="Guides on premium domain valuation, Albuquerque construction market fit, and brand strategy for category TLDs."
+  canonical={canonical}
+>
+  <Header />
+
+  <main class="flex-1">
+    <section class="section-padding bg-white">
+      <div class="container-narrow">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-rust-600">Editorial</p>
+          <h1 class="mt-3 font-display text-4xl font-semibold uppercase tracking-wide text-steel-950 sm:text-5xl">
+            Domain insights
+          </h1>
+          <p class="mt-4 text-lg text-steel-600">
+            Practical notes on premium domain valuation, New Mexico market trends, and brand strategy for construction companies.
+          </p>
+        </div>
+
+        {insights.length === 0 ? (
+          <p class="mt-12 text-steel-600">No insights published yet. Check back soon.</p>
+        ) : (
+          <ul class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {insights.map((entry) => (
+              <li>
+                <a
+                  href={`/insights/${entry.slug}/`}
+                  class="card block h-full transition hover:border-rust-300 hover:shadow-md"
+                >
+                  <p class="text-xs font-semibold uppercase tracking-wider text-rust-600">
+                    {entry.data.tags[0] ?? 'Insight'}
+                  </p>
+                  <h2 class="mt-2 font-display text-2xl font-semibold uppercase tracking-wide text-steel-950">
+                    {entry.data.title}
+                  </h2>
+                  <p class="mt-3 text-sm leading-relaxed text-steel-600">{entry.data.description}</p>
+                  <time class="mt-4 block text-xs text-steel-500" datetime={entry.data.pubDate.toISOString()}>
+                    {entry.data.pubDate.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
