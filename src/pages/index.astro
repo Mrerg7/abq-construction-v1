@@ -18,6 +18,7 @@ const structuredData = {
   '@type': 'Product',
   name: DOMAIN,
   description: 'Premium exact-match .construction domain for Albuquerque metro area. Ideal for general contractors, developers, and construction technology brands targeting New Mexico.',
+  image: [STREAM_POSTER],
   brand: { '@type': 'Brand', name: 'DesertRich Domains' },
   sku: 'ABQ-CONSTRUCTION-001',
   category: 'Premium Domain Names',
@@ -29,12 +30,46 @@ const structuredData = {
     priceCurrency: 'USD',
     price: PRICE,
     availability: 'https://schema.org/InStock',
+    itemCondition: 'https://schema.org/NewCondition',
     seller: {
       '@type': 'Organization',
       name: 'DesertRich Domains',
       url: 'https://desertrich.com'
     },
-    priceValidUntil: '2026-12-31'
+    validFrom: '2026-01-01T00:00:00-07:00',
+    priceValidUntil: '2026-12-31',
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'US',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted'
+    },
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: 0,
+        currency: 'USD'
+      },
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'US'
+      },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 0,
+          maxValue: 1,
+          unitCode: 'DAY'
+        },
+        transitTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 0,
+          maxValue: 0,
+          unitCode: 'DAY'
+        }
+      }
+    }
   }
 };
 ---

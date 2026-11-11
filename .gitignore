@@ -10,3 +10,4 @@ npm-debug.log*
 .idea
 .astro/
 .wrangler/
+agent-tools/
