@@ -18,11 +18,17 @@ const {
   title = 'ABQ.Construction | Premium Domain for Sale | DesertRich',
   description = 'Buy ABQ.Construction - Premium .construction domain for Albuquerque builders. Short, memorable, exact-match category domain. $100,000. Escrow protected. Instant transfer.',
   ogImage = POSTER,
-  canonical = 'https://abq.construction/',
+  canonical: canonicalProp,
   structuredData,
   noIndex = false,
   preloadFonts = [],
 } = Astro.props;
+
+// Always self-canonicalize on the preferred apex host so alternate hosts
+// (www, workers.dev) cannot inherit a homepage canonical by accident.
+const preferredOrigin = 'https://abq.construction';
+const canonical =
+  canonicalProp ?? new URL(Astro.url.pathname, preferredOrigin).href;
 
 const siteName = 'DesertRich Domains';
 const domainPrice = 100000;
@@ -40,7 +46,7 @@ const domainTld = '.construction';
     <meta name="description" content={description} />
     <meta name="google-site-verification" content="RLBHyg7UE38RRRbipEpigsVG1swHcCPQgusbUBgUUA8" />
     <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
-    <link rel="canonical" href={canonical} />
+    {!noIndex && <link rel="canonical" href={canonical} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />

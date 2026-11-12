@@ -10,4 +10,5 @@ npm-debug.log*
 .idea
 .astro/
 .wrangler/
+worker-configuration.d.ts
 agent-tools/
